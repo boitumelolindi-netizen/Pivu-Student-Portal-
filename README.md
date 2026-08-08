@@ -1,16 +1,207 @@
-# React + Vite
+# 🏠 Pivu Student Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A modern, responsive student accommodation web application designed to help students explore accommodation options and connect with Pivu Holdings Pty Ltd.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** https://pivustudentportal.co.za/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 **Firebase Deployment:** https://pivu-holdings-pty-ltd.web.app/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📌 About the Project
 
-## Expanding the ESLint configuration
+Pivu Student Portal is a responsive student accommodation website developed for **Pivu Holdings Pty Ltd**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The project was built to provide students with a clean and accessible way to explore available accommodation, view rooms and amenities, learn more about student living at Pivu, and access the platform's authentication features.
+
+The application focuses on a modern student-friendly experience while maintaining responsive design across desktop and mobile devices.
+
+---
+
+## ✨ Features
+
+* 🏠 Modern student accommodation landing page
+* 🛏️ Accommodation room listings
+* 🏊 Amenities section
+* 🖼️ Image gallery
+* 📞 Contact information
+* 📱 Responsive mobile and desktop design
+* 🔐 Firebase authentication
+* 📝 Student registration
+* 🔑 Student login
+* 🔄 Password reset functionality
+* 👤 Authenticated user dashboard
+* 🛡️ Admin access functionality
+* 🚪 Secure logout functionality
+* 🍔 Responsive mobile navigation
+
+---
+
+## 🔐 Authentication
+
+Authentication is powered by **Firebase Authentication**.
+
+Students can:
+
+* Create an account
+* Log in securely
+* Reset their password
+* Access authenticated areas of the application
+* Log out of their account
+
+The application also includes role-based access for administrative functionality.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* HTML5
+* CSS3
+
+### Backend / Services
+
+* Firebase Authentication
+* Firebase Hosting
+
+### Development Tools
+
+* Visual Studio Code
+* Git
+* GitHub
+* GitHub Codespaces
+
+---
+
+## 📱 Responsive Design
+
+The website was designed to work across different screen sizes, including:
+
+* 💻 Desktop
+* 💻 Laptop
+* 📱 Mobile devices
+* 📲 Tablet-sized screens
+
+The navigation, room cards, amenities, gallery, contact section and other components adapt to smaller screens for a better mobile experience.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have:
+
+* Node.js installed
+* npm installed
+* Git installed
+
+### Clone the repository
+
+```bash
+git clone git@github.com:boitumelolindi-netizen/Pivu-Student-Portal-.git
+```
+
+### Navigate into the project
+
+```bash
+cd Pivu-Student-Portal-
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+The application will then be available through the local development URL provided by Vite.
+
+---
+
+## 📁 Project Structure
+
+```text
+Pivu-Student-Portal-
+│
+├── public/
+│   └── images/
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Rooms.jsx
+│   │   ├── Amenities.jsx
+│   │   ├── Gallery.jsx
+│   │   ├── Contact.jsx
+│   │   └── Footer.jsx
+│   │
+│   ├── pages/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── firebase.js
+│   └── main.jsx
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔮 Future Improvements
+
+Potential future improvements include:
+
+* Online accommodation booking
+* Student booking management
+* Expanded admin dashboard functionality
+* Accommodation availability management
+* Additional student profile functionality
+* Improved booking workflows
+* Additional property and room management features
+
+---
+
+## 🎯 Project Goals
+
+The main goals of the project were to:
+
+1. Build a professional student accommodation web application.
+2. Create a responsive and user-friendly interface.
+3. Implement real user authentication.
+4. Integrate Firebase services.
+5. Practice modern React development.
+6. Deploy a complete web application.
+7. Manage and document the project using Git and GitHub.
+
+---
+
+## 👩🏽‍💻 Developer
+
+**Boitumelo Mahlangu**
+
+Junior Cybersecurity | Web Development
+
+### Connect with me
+
+💼 LinkedIn:
+https://www.linkedin.com/in/boitumelo-mahlangu
+
+🐙 GitHub:
+https://github.com/boitumelolindi-netizen
+
+---
+
+## 📄 License
+
+This project was developed for Pivu Holdings Pty Ltd.
+
+© 2026 Pivu Holdings Pty Ltd. All Rights Reserved.
