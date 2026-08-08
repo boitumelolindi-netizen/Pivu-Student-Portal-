@@ -88,41 +88,7 @@ The website was designed to work across different screen sizes, including:
 
 The navigation, room cards, amenities, gallery, contact section and other components adapt to smaller screens for a better mobile experience.
 
-## 🚀 Getting Started
 
-### Prerequisites
-
-Make sure you have:
-
-* Node.js installed
-* npm installed
-* Git installed
-
-### Clone the repository
-
-```bash
-git clone git@github.com:boitumelolindi-netizen/Pivu-Student-Portal-.git
-```
-
-### Navigate into the project
-
-```bash
-cd Pivu-Student-Portal-
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Start the development server
-
-```bash
-npm run dev
-```
-
-The application will then be available through the local development URL provided by Vite.
 
 ---
 
