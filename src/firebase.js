@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCLZzrMVe8Tp1-AKMUOMWRUUBmf6IDD4NA",
-  authDomain: "pivu-holdings-pty-ltd.firebaseapp.com",
+  authDomain: "pivustudentportal.co.za",
   projectId: "pivu-holdings-pty-ltd",
   storageBucket: "pivu-holdings-pty-ltd.firebasestorage.app",
   messagingSenderId: "973431379610",
