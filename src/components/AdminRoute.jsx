@@ -2,33 +2,39 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth, ADMIN_EMAILS } from "../firebase";
+import { auth } from "../firebase";
+import { isAdmin } from "../utils/isAdmin";
 
 function AdminRoute({ children }) {
-
   const [user, setUser] = useState(undefined);
+  const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
-
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+
+      if (!currentUser) {
+        setAdmin(false);
+        return;
+      }
+
+      const adminStatus = await isAdmin(currentUser);
+      setAdmin(adminStatus);
     });
 
     return unsubscribe;
-
   }, []);
 
-  if (user === undefined) {
+  if (user === undefined || admin === null) {
     return <h2>Loading...</h2>;
   }
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
-  // 🔥 THIS IS THE ADMIN CHECK
-  if (!ADMIN_EMAILS.includes(user.email)) {
-    return <Navigate to="dashboard" />;
+  if (!admin) {
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
