@@ -10,7 +10,8 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-import { auth, googleProvider, ADMIN_EMAILS } from "../firebase";
+import { auth, googleProvider } from "../firebase";
+import { isAdmin } from "../utils/isAdmin";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,9 @@ function Login() {
 
         toast.success("Welcome " + (user.displayName || "back") + " 👋");
 
-        if (ADMIN_EMAILS.includes(user.email)) {
+        const admin = await isAdmin(user);
+
+        if (admin) {
           navigate("/admin");
         } else {
           navigate("/dashboard");
@@ -72,12 +75,13 @@ function Login() {
       const user = userCredential.user;
 
       toast.success("Welcome back! 👋");
+const admin = await isAdmin(user);
 
-      if (ADMIN_EMAILS.includes(user.email)) {
-        navigate("/admin");
-      } else {
-        navigate("/dashboard");
-      }
+if (admin) {
+  navigate("/admin");
+} else {
+  navigate("/dashboard");
+}
     } catch (error) {
       toast.error(error.message);
     }

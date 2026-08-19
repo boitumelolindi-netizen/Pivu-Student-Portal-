@@ -18,8 +18,4 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-export const ADMIN_EMAILS = [
-  "boitumelolindi@gmail.com",
-  "xmanally@gmail.com",
-  "pivuholdings@gmail.com"
-];
+ 

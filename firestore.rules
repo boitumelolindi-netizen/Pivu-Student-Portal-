@@ -3,37 +3,113 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Users
+    // ─────────────────────────────────────────────
+    // HELPER: ADMIN CHECK
+    // ─────────────────────────────────────────────
+    function isAdmin() {
+      return request.auth != null
+        && exists(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        )
+        && get(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        ).data.role == "admin";
+    }
+
+
+    // ─────────────────────────────────────────────
+    // USERS
+    // ─────────────────────────────────────────────
     match /users/{userId} {
-      // Users can read their own profile.
-      // Only an existing admin can create/update/delete user role documents.
+
+      // Users can only read their own profile.
+      // Admins can read all user profiles.
       allow read: if request.auth != null
-                  && request.auth.uid == userId;
+                  && (
+                    request.auth.uid == userId
+                    || isAdmin()
+                  );
 
-      allow create, update, delete: if request.auth != null
-                             && exists(
-                               /databases/$(database)/documents/users/$(request.auth.uid)
-                             )
-                             && get(
-                               /databases/$(database)/documents/users/$(request.auth.uid)
-                             ).data.role == "admin";
+      // Only admins can create/update/delete users.
+      allow create, update, delete: if isAdmin();
     }
 
-    // Existing Pivu collections
+
+    // ─────────────────────────────────────────────
+    // BOOKINGS
+    // ─────────────────────────────────────────────
     match /bookings/{bookingId} {
-      allow read, write: if request.auth != null;
+
+      // Students can read their own bookings.
+      // Admins can read everything.
+      allow read: if request.auth != null
+                  && (
+                    resource.data.userId == request.auth.uid
+                    || isAdmin()
+                  );
+
+      // Students can create a booking only for themselves.
+      // Admins can create bookings too.
+      allow create: if request.auth != null
+                    && (
+                      request.resource.data.userId == request.auth.uid
+                      || isAdmin()
+                    );
+
+      // Only admins can modify or delete bookings.
+      allow update, delete: if isAdmin();
     }
 
+
+    // ─────────────────────────────────────────────
+    // MAINTENANCE
+    // ─────────────────────────────────────────────
     match /maintenance/{maintenanceId} {
-      allow read, write: if request.auth != null;
+
+      // Students can read their own requests.
+      // Admins can read everything.
+      allow read: if request.auth != null
+                  && (
+                    resource.data.userId == request.auth.uid
+                    || isAdmin()
+                  );
+
+      // Students can create a request only for themselves.
+      allow create: if request.auth != null
+                    && (
+                      request.resource.data.userId == request.auth.uid
+                      || isAdmin()
+                    );
+
+      // Only admins can update/delete maintenance requests.
+      allow update, delete: if isAdmin();
     }
 
+
+    // ─────────────────────────────────────────────
+    // ANNOUNCEMENTS
+    // ─────────────────────────────────────────────
     match /announcements/{announcementId} {
-      allow read, write: if request.auth != null;
+
+      // Authenticated users can read announcements.
+      allow read: if request.auth != null;
+
+      // Only admins can create/update/delete announcements.
+      allow create, update, delete: if isAdmin();
     }
 
+
+    // ─────────────────────────────────────────────
+    // ACCESS PASSES
+    // ─────────────────────────────────────────────
     match /accessPasses/{passId} {
-      allow read, write: if request.auth != null;
+
+      // QR verification is intentionally public.
+      // Only the access-pass document can be read.
+      allow read: if true;
+
+      // Only admins can create/update/delete access passes.
+      allow create, update, delete: if isAdmin();
     }
   }
 }

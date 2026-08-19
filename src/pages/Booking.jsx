@@ -124,9 +124,6 @@ function Booking() {
         onChange={(e) => setRoomType(e.target.value)}
       >
         <option value="">Select Room Type</option>
-        <option value="Single Room">
-          Single Room
-        </option>
         <option value="Sharing Room">
           Sharing Room
         </option>

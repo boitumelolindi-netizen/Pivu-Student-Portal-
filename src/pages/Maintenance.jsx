@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 import {
   collection,
@@ -19,6 +19,7 @@ function Maintenance() {
       await addDoc(
         collection(db, "maintenance"),
         {
+          userId: auth.currentUser.uid,
           roomNumber,
           priority,
           issue,

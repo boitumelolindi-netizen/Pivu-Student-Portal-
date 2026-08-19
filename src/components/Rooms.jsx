@@ -17,52 +17,6 @@ function Rooms() {
 
       <div className="room-container">
 
-        {/* Single Room */}
-        <div className="room-card">
-
-          <div className="room-image">
-            <img
-              src="/images/hero1.jpg"
-              alt="Single Room"
-            />
-
-            <span className="room-badge">
-              Private
-            </span>
-          </div>
-
-          <div className="room-content">
-
-            <h3>Single Room</h3>
-
-            <p className="room-description">
-              A private and comfortable space designed for students
-              who prefer their own room.
-            </p>
-
-            <div className="room-details">
-              <span>🛏️ 1 Student</span>
-              <span>🔒 Private</span>
-            </div>
-
-            <div className="room-bottom">
-
-              <div>
-                <span className="price-label">From</span>
-                <strong>R4,700</strong>
-                <span>/month</span>
-              </div>
-
-              <Link to="/booking" className="room-btn">
-                Book Now
-              </Link>
-
-            </div>
-
-          </div>
-        </div>
-
-
         {/* Sharing Room */}
         <div className="room-card">
 
@@ -92,13 +46,7 @@ function Rooms() {
             </div>
 
             <div className="room-bottom">
-
-              <div>
-                <span className="price-label">From</span>
-                <strong>R4,500</strong>
-                <span>/month</span>
-              </div>
-
+            
               <Link to="/booking" className="room-btn">
                 Book Now
               </Link>
@@ -139,11 +87,6 @@ function Rooms() {
 
             <div className="room-bottom">
 
-              <div>
-                <span className="price-label">From</span>
-                <strong>R4,700</strong>
-                <span>/month</span>
-              </div>
 
               <Link to="/booking" className="room-btn">
                 Book Now

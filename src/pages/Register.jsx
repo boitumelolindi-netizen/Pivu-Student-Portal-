@@ -9,7 +9,8 @@ import {
   getRedirectResult,
 } from "firebase/auth";
 
-import { auth, googleProvider, ADMIN_EMAILS } from "../firebase";
+import { auth, googleProvider } from "../firebase";
+import { isAdmin } from "../utils/isAdmin";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -30,11 +31,13 @@ function Register() {
 
         toast.success("Welcome " + (user.displayName || "to Pivu") + " 👋");
 
-        if (ADMIN_EMAILS.includes(user.email)) {
-          navigate("/admin");
-        } else {
-          navigate("/dashboard");
-        }
+        const admin = await isAdmin(user);
+
+if (admin) {
+  navigate("/admin");
+} else {
+  navigate("/dashboard");
+}
       } catch (error) {
         console.error("Google registration error:", error);
         toast.error(error.message);

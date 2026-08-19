@@ -2,21 +2,30 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-import { auth, ADMIN_EMAILS } from "../firebase";
+import { auth } from "../firebase";
+import { isAdmin } from "../utils/isAdmin";
 
 function Navbar() {
   const [user, setUser] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
+const [adminStatus, setAdminStatus] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    setUser(currentUser);
 
-    return () => unsubscribe();
-  }, []);
+    if (currentUser) {
+      const admin = await isAdmin(currentUser);
+      setAdminStatus(admin);
+    } else {
+      setAdminStatus(false);
+    }
+  });
+
+  return () => unsubscribe();
+}, []);
 
   const handleLogout = async () => {
     try {
@@ -28,8 +37,6 @@ function Navbar() {
     }
   };
 
-  const isAdmin =
-    user && ADMIN_EMAILS.includes(user.email);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -77,7 +84,7 @@ function Navbar() {
             </li>
           )}
 
-          {isAdmin && (
+          {adminStatus && (
             <li>
               <Link to="/admin" onClick={closeMenu}>
                 Admin

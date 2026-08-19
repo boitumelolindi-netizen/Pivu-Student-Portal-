@@ -22,7 +22,6 @@ function Contact() {
         <div className="contact-card">
           <h3>Alex Mondi</h3>
           <p>📞 066 557 7414</p>
-          <p>✉️ xmanally@gmail.com</p>
         </div>
 
       </div>
